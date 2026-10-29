@@ -2,6 +2,7 @@ package com.project.workshop.config;
 
 import com.project.workshop.entities.Order;
 import com.project.workshop.entities.User;
+import com.project.workshop.entities.enums.OrderStatus;
 import com.project.workshop.repositories.OrderRepository;
 import com.project.workshop.repositories.UserRepository;
 import org.hibernate.annotations.Array;
@@ -31,8 +32,8 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
 
-        Order o1 = new Order(null, Instant.now(), u1);
-        Order o2 = new Order(null, Instant.now(), u2);
+        Order o1 = new Order(null, Instant.now(), OrderStatus.WAITING_PAYMENT, u1);
+        Order o2 = new Order(null, Instant.now(), OrderStatus.PAID, u2);
 
         orderRepository.saveAll(Arrays.asList(o1, o2));
 
